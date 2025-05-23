@@ -1,4 +1,4 @@
-const {gemmeni, TTP_extractor} = require("../utils/gemini")
+const {gemmeni, TTP_extractor, mitre_defend_extractor} = require("../utils/gemini")
 
 
 const keysToFind = [
@@ -6,13 +6,19 @@ const keysToFind = [
     'destruction_time', 'machine_card', 'internal_external', 'special_flag',
   ];
   
-exports.process_data = (data) => {
-console.log("Received alert data:");
-const formattedData = getSelectedKeysString(keysToFind, data);
-// parsed_data = gemmeni(formattedData);
-attackTTPs = TTP_extractor(formattedData)
-console.log(attackTTPs)
+exports.process_data = async (data) => {
+    console.log("Received alert data:");
+    const formattedData = getSelectedKeysString(keysToFind, data);
+
+    const parsed_bundle = await sdo_finder(formattedData);
+    const attackTTPs = await TTP_extractor(formattedData);
+
+    return {
+        "stix 2.1 bundle": parsed_bundle,
+        "mitre_defend": attackTTPs
+    };
 };
+
 
 function getSelectedKeysString(keys, obj) {
 return keys
