@@ -1,0 +1,48 @@
+#ca-alert-create-step {
+  .cyw-step {
+    max-width: max-content;
+    margin-right: 2rem;
+    width: 100%;
+    &-content {
+      z-index: 1;
+      display: flex;
+      align-items: center;
+    }
+    &-circle:before {
+      visibility: hidden;
+    }
+  }
+}
+
+.cyw-purify {
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+  word-break: normal;
+  line-height: 1.5;
+  ul,
+  ol {
+    list-style-type: auto;
+  }
+  table {
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    th,
+    td {
+      padding: 0.5rem;
+      border-width: 0.1rem;
+      text-align: inherit !important;
+    }
+  }
+  pre {
+    white-space: normal;
+  }
+}
+
+#alert-feedback {
+  .cyw-select__menu .cyw-select__menu--expanded {
+    right: 0 !important;
+    left: auto;
+  }
+}

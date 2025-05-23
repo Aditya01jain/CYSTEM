@@ -1,0 +1,10 @@
+sources:
+  components: true
+  projects:
+    - name: Alerts
+      id: 668bc5f8ebcd25228575d881
+      fileName: Alerts
+    - name: RSS Feeds Revamp
+      id: 677f914c19203c308fb03bdd
+variants: true
+format: icu
