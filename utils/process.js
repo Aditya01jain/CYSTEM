@@ -1,4 +1,4 @@
-const {gemmeni, TTP_extractor, mitre_defend_extractor} = require("../utils/gemini")
+const {gemmeni, TTP_extractor, sdo_finder} = require("../utils/gemini")
 
 
 const keysToFind = [

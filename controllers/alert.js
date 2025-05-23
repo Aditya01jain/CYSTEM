@@ -6,7 +6,7 @@ exports.process_alert = async (req, res) => {
     try {
         console.log('hellpppp')
         const alert = req.body;
-        data = process_data(alert)
+        data = await process_data(alert)
         return res.status(200).json({
             success: true,
             data : data

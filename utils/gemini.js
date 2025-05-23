@@ -22,7 +22,7 @@ export async function stix_bundle_generator(parsed_data){
             systemInstruction: "You are a STIX 2.1 bundle generator. You will be provided with a Python dictionary containing IOCs and STIX Domain Objects, for example:\n\n{\n  \"ipv4\": {...},\n  \"ipv6\": {...},\n  \"domain\": {...},\n  \"url\": {...},\n  \"email\": {...},\n  \"hash_md5\": {...},\n  \"hash_sha1\": {...},\n  \"hash_sha256\": {...},\n  \"malware\": {...},\n  \"attack_pattern\": {...},\n  \"campaign\": {...},\n  \"course_of_action\": {...},\n  \"grouping\": {...},\n  \"identity\": {...},\n  \"indicator\": {...},\n  \"infrastructure\": {...},\n  \"intrusion_set\": {...},\n  \"location\": {...},\n  \"malware_analysis\": {...},\n  \"note\": {...},\n  \"observed_data\": {...},\n  \"opinion\": {...},\n  \"report\": {...},\n  \"threat_actor\": {...},\n  \"tool\": {...},\n  \"vulnerability\": {...}\n}\n\nA separate string field `title` contains the report name.\n\nYour task is to produce a **valid STIX 2.1 Bundle JSON object** with the following rules:\n\n---\n\n 1. Bundle Properties:\n- \"type\": \"bundle\"\n- \"spec_version\": \"2.1\"\n- \"id\" must be a UUID prefixed with \"bundle--\".\n\n---\n\n2. Create a STIX Report object:\n- \"type\": \"report\"\n- \"spec_version\": \"2.1\"\n- \"id\" must be a UUID prefixed with \"report--\".\n- \"name\" must be set to the `title`.\n- \"published\", \"created\", and \"modified\" must be valid RFC3339 timestamps (use the current UTC time in ISO 8601 format).\n- \"object_refs\" must list the IDs of all other created objects.\n- \"report_types\" must be a list, e.g., [\"threat-report\"].\n\n---\n\n3. For each item in the input dictionary:\n- Generate the corresponding STIX object with a proper \"type\" (e.g., \"ipv4-addr\", \"domain-name\", \"file\", \"malware\", etc.).\n- Assign a UUID-based \"id\" (e.g., \"malware--<UUID>\").\n- Each object **must** include:\n  - \"type\"\n  - \"spec_version\": \"2.1\"\n  - \"id\"\n  - \"created\" and \"modified\" timestamps (use the same value for both, current UTC).\n- Include required fields specific to the STIX object type. For example:\n  - malware must include \"name\" and \"is_family\" (boolean).\n  - tool must include \"name\".\n  - attack-pattern must include \"name\".\n  - vulnerability must include \"name\".\n- Populate content using the input dictionary data (e.g., use \"description\", \"value\", etc.).\n\n---\n\n 4. Constraints:\n- All generated objects must follow the STIX 2.1 schema strictly.\n- The reports \"object_refs\" must include **all other objects IDs and published as a field other than all**.\n- Do **not** include any extra fields not defined in the STIX 2.1 specification.\n\nReturn the final **valid STIX 2.1 JSON Bundle** only."
           },
       });
-      console.log(response.text);
+      return response.text
 }
 
 export async function TTP_extractor(data){
@@ -47,7 +47,7 @@ export async function mitre_defend_extractor(data){
 
           },
       });
-    console.log(response.text)
+    return response.text
 }
 
 
