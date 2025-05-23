@@ -1,5 +1,4 @@
 import { GoogleGenAI } from "@google/genai";
-
 const ai = new GoogleGenAI({ apiKey: "AIzaSyDEnhGVTy1UwAEM__YhGjkNRpCcUNl_gLM" });
 
 export async function sdo_finder(content) {
@@ -35,7 +34,7 @@ export async function TTP_extractor(data){
           },
       });
 
-      mitre_defend_extractor(response.text);
+      return mitre_defend_extractor(response.text);
 }
 
 export async function mitre_defend_extractor(data){
@@ -43,7 +42,7 @@ export async function mitre_defend_extractor(data){
         model: "gemini-2.0-flash",
         contents:data,
         config: {
-            systemInstruction: "You are a cybersecurity knowledge retrieval agent. Your task is to map one or more MITRE ATT&CK technique IDs to their related MITRE D3FEND (Defensive) techniques and return the result in JSON format.\n\nFor each MITRE ATT&CK ID provided:\n- Look up the related MITRE D3FEND techniques using the official D3FEND knowledge graph (via STIX-based mappings).\n- For each related D3FEND technique, retrieve the following fields:\n  - `defender_id`: The unique MITRE D3FEND identifier (e.g., \"D3-DA0001\").\n  - `title`: The official name of the D3FEND technique.\n  - `content`: A detailed description of what the technique does.\n  - `remedies`: A list of defensive actions or mitigation techniques associated with the D3FEND method. If no specific remedies are available, return an empty array.\n\nIf a MITRE ATT&CK ID has no related D3FEND techniques, return `null` for that ATT&CK ID.\n\nExpected Output Format (JSON):\n```json\n{\n  \"T1059\": [\n    {\n      \"defender_id\": \"D3-DA0001\",\n      \"title\": \"Process Activity Analysis\",\n      \"content\": \"Analyzes and monitors process behavior to detect anomalies or signs of compromise.\",\n      \"remedies\": [\n        \"Deploy endpoint detection and response (EDR) tools.\",\n        \"Monitor abnormal child processes or shell invocations.\"\n      ]\n    }\n  ],\n  \"TXXXX\": null\n}\n```\n\nAdditional Instructions:\n- Return only a clean JSON object with no extra commentary or metadata.\n- If multiple ATT&CK IDs are submitted, include them all in the root-level JSON object."
+            systemInstruction: "You are a cybersecurity knowledge retrieval agent. Your task is to map one or more MITRE ATT&CK technique IDs to their related MITRE D3FEND (Defensive) techniques and return the result in JSON format.\n\nFor each MITRE ATT&CK ID provided:\n- Look up the related MITRE D3FEND techniques using the official D3FEND knowledge graph (via STIX-based mappings).\n- For each related D3FEND technique, retrieve the following fields:\n  - `defender_id`: The unique MITRE D3FEND identifier (e.g., \"D3-DA0001\").\n  - `title`: The official name of the D3FEND technique.\n  - `content`: A detailed description of what the technique does.\n  - `remedies`: A list of defensive actions or mitigation techniques associated with the D3FEND method. If no specific remedies are available, return an empty array.\n\nIf a MITRE ATT&CK ID has no related D3FEND techniques, return `null` for that ATT&CK ID.\n\nExpected Output Format (JSON):\n```json\n{\n  \"T1059\": [\n    {\n      \"defender_id\": \"D3-DA0001\",\n      \"title\": \"Process Activity Analysis\",\n      \"content\": \"Analyzes and monitors process behavior to detect anomalies or signs of compromise.\",\n      \"remedies\": [\n        \"Deploy endpoint detection and response (EDR) tools.\",\n        \"Monitor abnormal child processes or shell invocations.\"\n      ]\n    }\n  ],\n  \"TXXXX\": null\n}\n```\n\nAdditional Instructions:\n- Return only a clean JSON object with no extra commentary or metadata.\n add the remedies for the finded defender_id- If multiple ATT&CK IDs are submitted, include them all in the root-level JSON object."
 
           },
       });

@@ -4,7 +4,6 @@ require("dotenv").config();
 
 exports.process_alert = async (req, res) => {
     try {
-        console.log('hellpppp')
         const alert = req.body;
         data = await process_data(alert)
         return res.status(200).json({
