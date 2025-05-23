@@ -1,0 +1,301 @@
+{
+    "type": "bundle",
+    "id": "bundle--605d4149-6b4d-4c56-9093-f588f386405e",
+    "spec_version": "2.1",
+    "objects": [
+      {
+        "type": "report",
+        "spec_version": "2.1",
+        "id": "report--2e8b0526-8542-4064-b3a4-285368c6a971",
+        "name": "IOCs",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "published": "2024-06-14T18:18:32.712210Z",
+        "object_refs": [
+          "malware--490a36d2-1d67-4a6d-a058-0292ef0dd21e",
+          "attack-pattern--7b837296-5768-4a66-b30e-67d716ca0694",
+          "threat-actor--8f6e545d-2628-4e35-902b-a03e8e1f9129",
+          "threat-actor--b084d825-0434-4b77-87c7-ff653915050e",
+          "tool--9e055a43-b451-4e74-bb7b-c783422a9b20",
+          "tool--0e2400b4-8204-43c9-9f98-5086f78f18d1",
+          "vulnerability--8091cf42-2881-4138-a564-6c48a6878758",
+          "vulnerability--0254c7a0-67a0-4900-969d-5e6f0d502380",
+          "vulnerability--f5760528-2c88-4a5a-a2b4-82875995f1d9",
+          "vulnerability--2739690d-b808-46d4-8a97-5a8254b19920",
+          "url--5f1724bc-7278-4d34-93df-d257344ca6f7",
+          "url--f9a3595a-1b47-449a-b2e2-25228909e06e",
+          "url--0e343069-34c5-4380-a6b1-a69f0c460593",
+          "url--c2a9b55c-5f53-4b31-980b-95b7940bc630",
+          "url--88a7b52c-3a8a-42e1-8489-64ca99410c30",
+          "url--1789b949-6a36-4f06-b39d-31083a2e394d",
+          "url--54a64c0e-2a23-431d-902a-3454b4c97f1c",
+          "url--9bb57991-53d9-4162-9439-0512087eb8b7",
+          "url--a27e5839-c0a9-4954-8c88-7a18c8770f58",
+          "url--216e8f32-9959-4c2e-a335-a74b8d807018",
+          "url--c796916c-204a-459f-b384-4814b46ef97c",
+          "url--1f703c85-a76a-4f49-9682-98a0ffb8e64a",
+          "url--c221175c-6235-4d64-a740-f18a99405799",
+          "url--d0122e79-b16f-478d-91df-91d388409e10",
+          "url--7256c63c-45a4-46a9-b384-11306e0a89a1",
+          "url--0c630896-c2c7-424e-a6d4-00e652181d8a",
+          "url--1991108a-f7f5-4f33-9197-366728e51510",
+          "url--317f52f4-39d8-463b-b782-441b03978927",
+          "url--f5039608-5e4d-47b2-8e82-287919d164ae"
+        ],
+        "report_types": [
+          "threat-report"
+        ]
+      },
+      {
+        "type": "malware",
+        "spec_version": "2.1",
+        "id": "malware--490a36d2-1d67-4a6d-a058-0292ef0dd21e",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Lumma Stealer",
+        "is_family": false,
+        "description": "Microsoft Dismantles Global Lumma Stealer Network, Seizes 2,000+ Domains,  Lumma Infostealer Infected About 10 Million Systems Before Global Disruption"
+      },
+      {
+        "type": "attack-pattern",
+        "spec_version": "2.1",
+        "id": "attack-pattern--7b837296-5768-4a66-b30e-67d716ca0694",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Kerberoasting attacks",
+        "description": "Delegated Managed Service Accounts (dMSA) that allows migration from an existing legacy service account, It was introduced in Windows Server 2025 as a mitigation to Kerberoasting attacks."
+      },
+      {
+        "type": "threat-actor",
+        "spec_version": "2.1",
+        "id": "threat-actor--8f6e545d-2628-4e35-902b-a03e8e1f9129",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Chinese hackers",
+        "description": "Chinese Hackers Exploit Ivanti EPMM Bugs in Global Enterprise Network Attacks"
+      },
+      {
+        "type": "threat-actor",
+        "spec_version": "2.1",
+        "id": "threat-actor--b084d825-0434-4b77-87c7-ff653915050e",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Russian Hackers",
+        "description": "CISA Says Russian Hackers Targeting Western Supply-Lines to Ukraine"
+      },
+      {
+        "type": "tool",
+        "spec_version": "2.1",
+        "id": "tool--9e055a43-b451-4e74-bb7b-c783422a9b20",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Samlify",
+        "description": "A critical Samlify authentication bypass vulnerability has been discovered that allows attackers to impersonate admin users by injecting unsigned malicious assertions into legitimately signed SAML responses."
+      },
+      {
+        "type": "tool",
+        "spec_version": "2.1",
+        "id": "tool--0e2400b4-8204-43c9-9f98-5086f78f18d1",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "Samlify SSO",
+        "description": "Samlify is a high-level authentication library that helps developers integrate SAML SSO and Single Log-Out (SLO) into Node.js applications."
+      },
+      {
+        "type": "vulnerability",
+        "spec_version": "2.1",
+        "id": "vulnerability--8091cf42-2881-4138-a564-6c48a6878758",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "CVE-2025-34027",
+        "description": "URL decoding inconsistency allows attackers to bypass authentication and access a file upload endpoint."
+      },
+      {
+        "type": "vulnerability",
+        "spec_version": "2.1",
+        "id": "vulnerability--0254c7a0-67a0-4900-969d-5e6f0d502380",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "CVE-2025-34026",
+        "description": "improper reliance on the X-Real-Ip header lets attackers bypass access controls to sensitive Spring Boot Actuator endpoints."
+      },
+      {
+        "type": "vulnerability",
+        "spec_version": "2.1",
+        "id": "vulnerability--f5760528-2c88-4a5a-a2b4-82875995f1d9",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "CVE-2025-34025",
+        "description": "a misconfigured Docker setup exposes host binaries to container writes."
+      },
+      {
+        "type": "vulnerability",
+        "spec_version": "2.1",
+        "id": "vulnerability--2739690d-b808-46d4-8a97-5a8254b19920",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z",
+        "name": "CVE-2025-47949",
+        "description": "A critical Samlify authentication bypass vulnerability that allows attackers to impersonate admin users by injecting unsigned malicious assertions into legitimately signed SAML responses."
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--5f1724bc-7278-4d34-93df-d257344ca6f7",
+        "value": "https://thehackernews.com/2025/05/critical-windows-server-2025-dmsa.html",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--f9a3595a-1b47-449a-b2e2-25228909e06e",
+        "value": "https://www.akamai.com/blog/security-research/abusing-dmsa-for-privilege-escalation-in-active-directory",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--0e343069-34c5-4380-a6b1-a69f0c460593",
+        "value": "https://app.flashpoint.io/vuln/vulnerabilities/405269",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--c2a9b55c-5f53-4b31-980b-95b7940bc630",
+        "value": "https://app.flashpoint.io/cti/intelligence/report/ZLee0urORlugBJ7tqfsg9Q",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--88a7b52c-3a8a-42e1-8489-64ca99410c30",
+        "value": "https://www.bleepingcomputer.com/news/security/unpatched-critical-bugs-in-versa-concerto-lead-to-auth-bypass-rce",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--1789b949-6a36-4f06-b39d-31083a2e394d",
+        "value": "https://projectdiscovery.io/blog/versa-concerto-authentication-bypass-rce",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--54a64c0e-2a23-431d-902a-3454b4c97f1c",
+        "value": "https://app.flashpoint.io/cti/intelligence/report/thQkoY8Bpnh4vTFZ2Edw",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--9bb57991-53d9-4162-9439-0512087eb8b7",
+        "value": "https://www.bleepingcomputer.com/news/security/critical-samlify-sso-flaw-lets-attackers-log-in-as-admin/",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--a27e5839-c0a9-4954-8c88-7a18c8770f58",
+        "value": "https://app.flashpoint.io/vuln/vulnerabilities/404755",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--216e8f32-9959-4c2e-a335-a74b8d807018",
+        "value": "https://www.endorlabs.com/learn/cve-2025-47949-reveals-flaw-in-samlify-that-opens-door-to-saml-single-sign-on-bypass",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--c796916c-204a-459f-b384-4814b46ef97c",
+        "value": "https://app.flashpoint.io/cti/intelligence/report/AfKQ6pYBJguMp4giILtj",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--1f703c85-a76a-4f49-9682-98a0ffb8e64a",
+        "value": "https://thehackernews.com/2025/05/chinese-hackers-exploit-ivanti-epmm.html",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--c221175c-6235-4d64-a740-f18a99405799",
+        "value": "https://www.bleepingcomputer.com/news/security/signal-now-blocks-microsoft-recall-screenshots-on-windows-11",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--d0122e79-b16f-478d-91df-91d388409e10",
+        "value": "https://www.securityweek.com/cisco-patches-high-severity-dos-privilege-escalation-vulnerabilities",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--7256c63c-45a4-46a9-b384-11306e0a89a1",
+        "value": "https://www.securityweek.com/gitlab-atlassian-patch-high-severity-vulnerabilities",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--0c630896-c2c7-424e-a6d4-00e652181d8a",
+        "value": "https://hackread.com/microsoft-dismantle-lumma-stealer-domain-seized",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--1991108a-f7f5-4f33-9197-366728e51510",
+        "value": "https://cyberscoop.com/appeals-court-rejects-khashoggi-widow-lawsuit-against-nso-group",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--317f52f4-39d8-463b-b782-441b03978927",
+        "value": "https://www.securityweek.com/cisa-says-russian-hackers-targeting-western-supply-lines-to-ukraine",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--f5039608-5e4d-47b2-8e82-287919d164ae",
+        "value": "https://cyberscoop.com/lumma-infostealer-widespread-victims",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      },
+      {
+        "type": "url",
+        "spec_version": "2.1",
+        "id": "url--0e343069-34c5-4380-a6b1-a69f0c460593",
+        "value": "https://app.flashpoint.io/cti/intelligence/standups",
+        "created": "2024-06-14T18:18:32.712210Z",
+        "modified": "2024-06-14T18:18:32.712210Z"
+      }
+    ]
+  }
