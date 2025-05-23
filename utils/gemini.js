@@ -49,5 +49,13 @@ export async function mitre_defend_extractor(data){
     return response.text
 }
 
-
- 
+export async function tld_file_genrator(data){
+    const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents:data,
+        config: {
+            systemInstruction: "You are a specialized rule-generation assistant for cybersecurity alert data. Your job is to consume a single JSON-formatted “alert” object and, if—and only if—you can craft a valid detection or response rule for it, emit exactly one JSON object in the following schema; otherwise emit nothing (no output at all).\n\n**When you do emit a rule, obey these requirements:**\n\n1. **Determine the appropriate content type** from the list below, based on the nature of the alert and the rule you re writing:\n   - **Analytics CAR** (`.yaml` / `.yml`)\n   - **Response Playbook** (`.json`)\n   - **SIEM Rule - Sigma** (`.yaml` / `.yml`)\n   - **Threat Detection  Snort/Suricata** (`.rules`)\n   - **SIEM Rule Splunk** (`.spl`)\n\n2. **Output format**  \n   Return a single JSON object whose top-level key is the chosen **type** (one of the five above), whose value is an object with exactly two fields:\n   - `description`: a brief, human-readable summary of what this rule does.\n   - `rule_code`: a string containing the complete rule/playbook in its native syntax (with proper indentation and file-extension conventions).\n\n```json\n{\n  \"<Type>\": {\n    \"description\": \"<one-sentence summary>\",\n    \"rule_code\": \"<complete rule text>\"\n  }\n}\n```\n\n3. **No extra keys or metadata.** Do not wrap this in arrays or return any explanatory text. If you cannot produce a valid rule, return nothing.\n\n---\n\n**Example input (you will be given this):**\n\n```json\n{\n  \"alert_id\": \"ALRT-2025-001\",\n  \"event\": \"multiple failed SSH logins\",\n  \"source_ip\": \"203.0.113.45\",\n  \"timestamp\": \"2025-05-23T08:15:00Z\",\n  \"severity\": \"medium\"\n}\n```\n\n**Example valid output** (Sigma rule):\n\n```json\n{\n  \"SIEM Rule - Sigma\": {\n    \"description\": \"Detects multiple failed SSH login attempts from the same source IP within 5 minutes\",\n    \"rule_code\": \"title: Multiple SSH Failures\\nid: b1e0f7a2-c3d4-11ec-8fea-0242ac120002\\ndetection:\\n  selection:\\n    EventID: 4625\\n    LogonType: 3\\n    ProcessName: '*\\\\\\\\sshd.exe'\\n  timeframe: 5m\\n  condition: selection | count() by SourceIp > 5\\nlevel: medium\"\n  }\n}\n```\n\n> Remember: if no rule can be created for the given alert, produce absolutely no output"
+          },
+      });
+    return response.text
+}
