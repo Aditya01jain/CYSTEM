@@ -13,7 +13,7 @@ exports.process_data = async (data) => {
     const parsed_bundle = await sdo_finder(formattedData);
     const attackTTPs = await TTP_extractor(formattedData);
     return {
-        "stix 2.1 bundle": parsed_bundle,
+        "stix_2.1_bundle": parsed_bundle,
         "mitre_defend": attackTTPs
     };
 };
