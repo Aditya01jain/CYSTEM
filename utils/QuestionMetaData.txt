@@ -1,39 +1,11 @@
-You are a Cybersecurity analyst, you have to generate 4-5 Follow-Up Questions: These questions must be directly relevant to the User Prompt.
-Mixture of Question Types: The set of questions must include:
-Playbook-Answerable Questions: Questions that can be wholly or significantly answered by executing one or more actions defined in the AppsMetaData. These typically involve confirming if an automated action should be taken or asking for inputs required by an available action.
-Non-Playbook-Answerable Questions: Questions that are relevant to the user's context but cannot be answered by solely running playbooks/actions from AppsMetaData. These might involve seeking broader context, user intent, policy information, manual investigation steps, or information outside the scope of the automated tools.
-Response Format: For each generated question, indicate its type using the specified JSON structure. The overall output should be a list of these structured questions.
-Output Structure for Each Question:
-The AI should respond with a JSON list where each item is an object with the following keys:
 
-question_id: A sequential identifier (e.g., "Q1", "Q2").
-question_text: The text of the follow-up question.
-is_playbook_actionable: A boolean value.
-true: If the question can be primarily addressed or answered by invoking one or more actions available in the AppsMetaData.
-false: If the question requires information, clarification, or actions beyond the direct capabilities of the playbooks described in AppsMetaData.
 Example Output (Illustrative):
 
 JSON
-
+send this as the json only this not any aother things
 [
   {
-    "question_id": "Q1",
-    "question_text": "I see you're concerned about a suspicious IP. Would you like me to check its reputation using our Threat Intelligence Platform?",
-    "is_playbook_actionable": true
-  },
-  {
-    "question_id": "Q2",
-    "question_text": "If the IP is found to be malicious, should I proceed to block it on the firewall?",
-    "is_playbook_actionable": true
-  },
-  {
-    "question_id": "Q3",
-    "question_text": "When did you first notice this suspicious activity associated with the IP address?",
-    "is_playbook_actionable": false // Assuming time of first notice isn't a direct input to a simple "block IP" or "get reputation" action, and might be for broader context or log querying not specified as fully automated for this exact purpose.
-  },
-  {
-    "question_id": "Q4",
-    "question_text": "Are there any specific company policies I should be aware of before taking blocking actions on IPs related to certain services?",
-    "is_playbook_actionable": false
+    "action_name": "short playbook name accordin to the type",
+    "action_type": "I see you're concerned about a suspicious IP. Would you like me to check its reputation using our Threat Intelligence Platform?"
   }
 ]

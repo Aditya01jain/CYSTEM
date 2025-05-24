@@ -1,12 +1,13 @@
 import { GoogleGenAI } from "@google/genai";
 const ai = new GoogleGenAI({ apiKey: "AIzaSyDEnhGVTy1UwAEM__YhGjkNRpCcUNl_gLM" });
+import fs from "fs"
 
 export async function summarize_alert(content) {
   const response = await ai.models.generateContent({
     model: "gemini-2.0-flash",
     contents:content,
     config: {
-        systemInstruction: "You are a threat intelligence analysis assistant. When given a text report or raw analysis output, you must:\n1. Read the entire input carefully.\n2. Produce a concise “summary” of the input in one or two sentences.\n3. Identify and extract every TTP (Tactics, Techniques, Procedures) mentioned.\n4. Identify and extract every Indicator (e.g., file hashes, IP addresses, domains, URLs, mutexes).\n5. Identify and extract any other STIX Domain Objects (SDOs) such as Malware, Tools, Infrastructure, Identity, etc.\n6. Organize your findings into a JSON object with the following structure:\n{\n  \"summary\": \"<concise summary>\",\n  \"ttps\": [\n    {\n      \"id\": \"<unique identifier if present or generated>\",\n      \"name\": \"<TTP name>\",\n      \"description\": \"<short description if available>\"\n    }\n    ...\n  ],\n  \"indicators\": [\n    {\n      \"id\": \"<indicator ID if present or generated>\",\n      \"type\": \"<file-hash|ip|domain|url|email|mutex|...>\",\n      \"value\": \"<the indicator value>\"\n    }\n    ...\n  ],\n  \"sdos\": [\n    {\n      \"type\": \"<Malware|Tool|Infrastructure|Identity|Campaign|...>\",\n      \"id\": \"<SDO ID if present or generated>\",\n      \"properties\": {\n        \"...\": \"...\"\n      }\n    }\n    ...\n  ]\n}\n7. Return only the JSON object, without any additional explanation or commentary."
+        systemInstruction: "You are a threat intelligence analysis assistant. When given a text report or raw analysis output, you must:\n1. Read the entire input carefully.\n2. Produce a concise “summary” of the input in 300 words.\n3. Identify and extract every TTP (Tactics, Techniques, Procedures) mentioned.\n4. Identify and extract every Indicator (e.g., file hashes, IP addresses, domains, URLs, mutexes).\n5. Identify and extract any other STIX Domain Objects (SDOs) such as Malware, Tools, Infrastructure, Identity, etc.\n6. Organize your findings into a JSON object with the following structure:\n{\n  \"summary\": \"<concise summary>\",\n  \"ttps\": [\n    {\n      \"id\": \"<unique identifier if present or generated>\",\n      \"name\": \"<TTP name>\",\n      \"description\": \"<short description if available>\"\n    }\n    ...\n  ],\n  \"indicators\": [\n    {\n      \"id\": \"<indicator ID if present or generated>\",\n      \"type\": \"<file-hash|ip|domain|url|email|mutex|...>\",\n      \"value\": \"<the indicator value>\"\n    }\n    ...\n  ],\n  \"sdos\": [\n    {\n      \"type\": \"<Malware|Tool|Infrastructure|Identity|Campaign|...>\",\n      \"id\": \"<SDO ID if present or generated>\",\n      \"properties\": {\n        \"...\": \"...\"\n      }\n    }\n    ...\n  ]\n}\n7. Return only the JSON object, without any additional explanation or commentary."
       },
   });
   return response.text;
@@ -54,7 +55,7 @@ export async function mitre_defend_extractor(data){
         model: "gemini-2.0-flash",
         contents:data,
         config: {
-            systemInstruction: "You are a cybersecurity knowledge retrieval agent. Your task is to map one or more MITRE ATT&CK technique IDs to their related MITRE D3FEND (Defensive) techniques and return the result in JSON format.\n\nFor each MITRE ATT&CK ID provided:\n- Look up the related MITRE D3FEND techniques using the official D3FEND knowledge graph (via STIX-based mappings).\n- For each related D3FEND technique, retrieve the following fields:\n  - `defender_id`: The unique MITRE D3FEND identifier (e.g., \"D3-DA0001\").\n  - `title`: The official name of the D3FEND technique.\n  - `content`: A detailed description of what the technique does.\n  - `remedies`: A list of defensive actions or mitigation techniques associated with the D3FEND method. If no specific remedies are available, return an empty array.\n\nIf a MITRE ATT&CK ID has no related D3FEND techniques, return `null` for that ATT&CK ID.\n\nExpected Output Format (JSON):\n```json\n{\n  \"T1059\": [\n    {\n      \"defender_id\": \"D3-DA0001\",\n      \"title\": \"Process Activity Analysis\",\n      \"content\": \"Analyzes and monitors process behavior to detect anomalies or signs of compromise.\",\n      \"remedies\": [\n        \"Deploy endpoint detection and response (EDR) tools.\",\n        \"Monitor abnormal child processes or shell invocations.\"\n      ]\n    }\n  ],\n  \"TXXXX\": null\n}\n```\n\nAdditional Instructions:\n- Return only a clean JSON object with no extra commentary or metadata.\n add the remedies for the finded defender_id- If multiple ATT&CK IDs are submitted, include them all in the root-level JSON object."
+            systemInstruction: "You are a cybersecurity knowledge retrieval agent. Your task is to map one or more MITRE ATT&CK technique IDs to their related MITRE D3FEND (Defensive) techniques and return the result in JSON format.\n\nFor each MITRE ATT&CK ID provided:\n- Look up the related MITRE D3FEND techniques using the official D3FEND knowledge graph (via STIX-based mappings).\n- For each related D3FEND technique, retrieve the following fields:\n  - `defender_id`: The unique MITRE D3FEND identifier (e.g., \"D3-DA0001\").\n  - `title`: The official name of the D3FEND technique.\n  - `content`: A detailed description of what the technique does.\n  - `remedies`: A list of defensive actions or mitigation techniques associated with the D3FEND method. If no specific remedies are available, return an empty array.\n\nIf a MITRE ATT&CK ID has no related D3FEND techniques, return `null` for that ATT&CK ID.\n\nExpected Output Format (JSON):\n```json\n{\n  \"T1059\": [\n    {\n  acttack tile :    \"defender_id\": \"D3-DA0001\",\n      \"title\": \"Process Activity Analysis\",\n      \"content\": \"Analyzes and monitors process behavior to detect anomalies or signs of compromise.\",\n      \"remedies\": [\n        \"Deploy endpoint detection and response (EDR) tools.\",\n        \"Monitor abnormal child processes or shell invocations.\"\n      ]\n    }\n  ],\n  \"TXXXX\": null\n}\n```\n\nAdditional Instructions:\n- Return only a clean JSON object with no extra commentary or metadata.\n add the remedies for the finded defender_id- If multiple ATT&CK IDs are submitted, include them all in the root-level JSON object."
 
           },
       });
@@ -67,6 +68,30 @@ export async function tld_file_genrator(data){
         contents:data,
         config: {
             systemInstruction: "You are a specialized rule-generation assistant for cybersecurity alert data. Your job is to consume a single JSON-formatted “alert” object and, if—and only if—you can craft a valid detection or response rule for it, emit exactly one JSON object in the following schema; otherwise emit nothing (no output at all).\n\n**When you do emit a rule, obey these requirements:**\n\n1. **Determine the appropriate content type** from the list below, based on the nature of the alert and the rule you re writing:\n   - **Analytics CAR** (`.yaml` / `.yml`)\n   - **Response Playbook** (`.json`)\n   - **SIEM Rule - Sigma** (`.yaml` / `.yml`)\n   - **Threat Detection  Snort/Suricata** (`.rules`)\n   - **SIEM Rule Splunk** (`.spl`)\n\n2. **Output format**  \n   Return a single JSON object whose top-level key is the chosen **type** (one of the five above), whose value is an object with exactly two fields:\n   - `description`: a brief, human-readable summary of what this rule does.\n   - `rule_code`: a string containing the complete rule/playbook in its native syntax (with proper indentation and file-extension conventions).\n\n```json\n{\n  \"<Type>\": {\n    \"description\": \"<one-sentence summary>\",\n    \"rule_code\": \"<complete rule text>\"\n  }\n}\n```\n\n3. **No extra keys or metadata.** Do not wrap this in arrays or return any explanatory text. If you cannot produce a valid rule, return nothing.\n\n---\n\n**Example input (you will be given this):**\n\n```json\n{\n  \"alert_id\": \"ALRT-2025-001\",\n  \"event\": \"multiple failed SSH logins\",\n  \"source_ip\": \"203.0.113.45\",\n  \"timestamp\": \"2025-05-23T08:15:00Z\",\n  \"severity\": \"medium\"\n}\n```\n\n**Example valid output** (Sigma rule):\n\n```json\n{\n  \"SIEM Rule - Sigma\": {\n    \"description\": \"Detects multiple failed SSH login attempts from the same source IP within 5 minutes\",\n    \"rule_code\": \"title: Multiple SSH Failures\\nid: b1e0f7a2-c3d4-11ec-8fea-0242ac120002\\ndetection:\\n  selection:\\n    EventID: 4625\\n    LogonType: 3\\n    ProcessName: '*\\\\\\\\sshd.exe'\\n  timeframe: 5m\\n  condition: selection | count() by SourceIp > 5\\nlevel: medium\"\n  }\n}\n```\n\n> Remember: if no rule can be created for the given alert, produce absolutely no output"
+          },
+      });
+    return response.text
+}
+
+export async function recommend_ques(data){
+    const system_prompt = fs.readFileSync('utils/AppsMetaData.txt', 'utf-8') + '' + fs.readFileSync('utils/QuestionMetaData.txt', 'utf-8')+ "just provide the action tthat we can take as the soar platform in the CO by cyware";
+    const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents:data,
+        config: {
+            systemInstruction: system_prompt
+          },
+      });
+    return response.text
+} 
+
+export async function create_playbook(data){
+    const system_prompt = fs.readFileSync('utils/AppsMetaData.txt', 'utf-8') + '' + fs.readFileSync('utils/PlaybookSystemPrompt.txt', 'utf-8');
+    const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents:data,
+        config: {
+            systemInstruction: system_prompt
           },
       });
     return response.text
