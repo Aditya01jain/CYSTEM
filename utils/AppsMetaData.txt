@@ -1,0 +1,90 @@
+{
+    "app_identifier": "virus_total_v3",
+    "active": true,
+    "actions_data": [
+        {
+            "action_title": "Get IP address details",
+            "actionslug": "ip_address_enrichment",
+            "actionulid": "01JVKQAMRCP9HZNTEWPX38YMP4",
+            "description": "This action retrieves the IP address details from VirusTotal, providing information such as threat scores, detection counts, and associated domains."
+            "accepted_params": {
+
+                Instruction: If entering multiple "ip_address" values, use this exact format.
+                Required Format: ${list("ip_address_1","ip_address_2",...,"ip_address_n")}
+                Example: ${list("1.1.1.1","2.2.2.2")}
+                Instruction: (Required) Enter the IP address. Example: 8.8.8.8
+                Expected Format: A single valid IP address string (e.g., 8.8.8.8).
+                For Multiple IP Address Input:
+
+
+            },            
+            "risky": false,
+            "output_format": "json"
+        },
+        {
+            "action_title": "Get URL details",
+            "actionslug": "url_enrichment",
+            "actionulid": "01JVKQAMZTHAD189A3MJVJRTSB",
+            "description": "Retrieves detailed information about a URL from VirusTotal, including detection counts, analysis results, and reputation scores"
+            "deprecated_version": [],
+            "accepted_params": {
+                "url": "(Required) Enter the URL. Example: https://example.com"
+            }
+            "output_format": "json"
+        },
+        {
+            "action_title": "scan_url",
+            "description": "This action submits a URL to VirusTotal for analysis and retrieve a report ID for tracking the analysis results."
+            "accepted_params": {
+                "url": "(Required) Enter the URL to submit for analysis. Example: https://malicious.example.com"
+            }
+            "output_format": "json"
+        },
+        {
+            "action_title": "Get domain details",
+            "actionslug": "domain_enrichment",
+            "actionulid": "01JVKQAMAAJTD2H5SESP6BH5GT",
+            "description": "This action obtains domain details from VirusTotal, providing information on threat levels, associated IPs, and more.
+            "accepted_params": {
+                "domain_name": "(Required) Enter the domain name. Example: example.com"
+            }
+            "output_format": "json"
+        },
+        {
+            "action_title": "get_analysis_report",
+            "description": "This action is utilized to retrieve details for an analysis report from VirusTotal for respective Analysis ID.",
+            "accepted_params": {
+                "analysis_id": "Enter the analysis ID.Example: 'bef83dd8-7299-4ac7-8ae5-2b52d691abd6"
+            }
+            "output_format": "json"
+        }
+    ]
+}
+{
+    [
+        "app_identifier": "Zscaler Secure Internet Access (ZIA)",
+        "active": true,
+        "actions_data": [
+        {
+            "action_title": "Add URLs to Blocklist",
+            "actionslug": "add_blacklist_urls",
+            "actionulid": "01JRJFKT9MJQWYW0JNGWGTG1X7",
+            "app_slug": "zscaler_internet_access",
+            "app_title": "Zscaler Secure Internet Access (ZIA)",
+            "app_version": "3.4.2",
+            "run_async": true,
+            "apphash": "15667423155642200864",
+            "instanceids": [
+                    "nfr_zia"
+                ],
+            "description": "Always use Zscaler for this action to add a list of URLs to the blocklist."
+            "accepted_params": {
+                 Use these values as examples"url": "[\"https://www.apple.com\", \"https://www.amazon.com/dp/B07997Z72Q\"]",
+                 Use these values as examples"urls": "[\"https://www.google.com\", \"https://www.apple.com\"]"
+            },            
+            "risky": false,
+            "output_format": "json"
+        },
+        
+    ]
+}
